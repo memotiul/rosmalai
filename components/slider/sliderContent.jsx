@@ -6,7 +6,7 @@ import Slider from "@/components/slider/slider";
 import NewSlider from "@/components/slider/newSlider";
 import ZoomSlider from "@/components/slider/zoomSlider";
 import Carousel from "@/components/slider/carousel";
-import Cube from "@/components/slider/cube";
+
 
 export default function Home() {
   const router = useRouter();
