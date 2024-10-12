@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV === "development") global.prisma = prisma;
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -10,13 +11,11 @@ export default async function handler(req, res) {
       const serializedReviewProducts = reviewProducts.map((review) => ({
         ...review,
         id: review.id.toString(), // Convert `bigint` to `string`
-        // Add other conversions if needed
       }));
 
-      // console.log("Fetched data:", serializedReviewProducts); // Check this log
       res.status(200).json(serializedReviewProducts);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data:", error.message); // Log the error message
       res.status(500).json({ error: "Failed to fetch data" });
     }
   } else {
