@@ -8,7 +8,7 @@ import SliderContent from "../components/slider/sliderContent";
 
 export default function Home() {
   const router = useRouter();
-
+  console.log(process.env.DATABASE_URL);
   return (
     <>
       <div className="">
